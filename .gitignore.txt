@@ -1,0 +1,17 @@
+Python
+pycache/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+
+Jupyter
+.ipynb_checkpoints
+
+Streamlit
+.streamlit/
+
+VS Code
+.vscode/
