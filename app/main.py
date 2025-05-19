@@ -49,37 +49,8 @@ def load_assets():
 # Load assets once when app starts
 model, encoders = load_assets()
 
-# --- Prediction Function with Logging ---
-def make_prediction(input_data):
-    """Make prediction and log results"""
-    try:
-        # Transform categorical features
-        encoded_data = input_data.copy()
-        for col in ['Cut', 'Color', 'Clarity', 'Polish', 'Symmetry', 'Report']:
-            encoded_data[col] = encoders[col].transform([encoded_data[col]])[0]
-        
-        # Convert to DataFrame for model
-        prediction_input = pd.DataFrame([encoded_data.values()], 
-                                      columns=encoded_data.keys())
-        
-        # Predict
-        price = model.predict(prediction_input)[0]
-        
-        # Log prediction
-        log_prediction(
-            input_data=input_data,
-            prediction=price,
-            model_version="1.0"  # Could be dynamic from DVC
-        )
-        
-        return price
-        
-    except Exception as e:
-        logger.error(f"Prediction failed: {str(e)}", exc_info=True)
-        raise
-
 # --- Streamlit UI ---
-st.title("💎 Diamond Price Predictor (MLOps Version)")
+st.title("💎 Diamond Price Predictor")
 st.write("Enter the details below to get a predicted price.")
 
 # User inputs
@@ -102,30 +73,23 @@ report = st.selectbox("Report Type", encoders['Report'].classes_,
 if st.button("Predict Price"):
     with st.spinner("Calculating..."):
         try:
-            # Prepare input data (now as dict for better logging)
-            input_data = {
-                "carat": carat,
-                "cut": cut,
-                "color": color,
-                "clarity": clarity,
-                "polish": polish,
-                "symmetry": symmetry,
-                "report": report,
-                "timestamp": datetime.now().isoformat()
-            }
-            
-            # Predict
-            price = make_prediction(input_data)
-            
-            # Display
+            # Create input DataFrame
+            input_data = pd.DataFrame([[
+                carat,
+                encoders['Cut'].transform([cut])[0],
+                encoders['Color'].transform([color])[0],
+                encoders['Clarity'].transform([clarity])[0],
+                encoders['Polish'].transform([polish])[0],
+                encoders['Symmetry'].transform([symmetry])[0],
+                encoders['Report'].transform([report])[0]
+            ]], columns=['Carat Weight', 'Cut', 'Color', 'Clarity', 
+                        'Polish', 'Symmetry', 'Report'])
+
+            # Predict and display
+            price = model.predict(input_data)[0]
             st.success(f"Estimated Diamond Price: **${price:,.2f}**")
             st.balloons()
             
         except Exception as e:
             st.error(f"Prediction failed: {str(e)}")
             st.error("Please check your inputs and try again.")
-
-# --- Model Version Info (Optional MLOps Feature) ---
-st.sidebar.markdown("### Model Information")
-st.sidebar.write(f"Model loaded: `diamond_price_model.pkl`")
-st.sidebar.write("Last updated: 2023-11-15")  # Could be dynamic from DVC
