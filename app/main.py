@@ -6,7 +6,7 @@ import os
 from pathlib import Path
 from datetime import datetime
 import logging
-from src.monitoring.logging import log_prediction  # New import for MLOps
+from src.monitoring.logging import log_prediction  
 
 # --- Configure Logging ---
 logging.basicConfig(level=logging.INFO)

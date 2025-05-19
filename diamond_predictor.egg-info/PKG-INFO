@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: diamond_predictor
+Version: 0.1
+Requires-Dist: streamlit
+Requires-Dist: pandas
+Requires-Dist: scikit-learn
+Dynamic: requires-dist
