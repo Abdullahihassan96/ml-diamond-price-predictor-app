@@ -1,0 +1,36 @@
+artifact_path: random_forest_model
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.13.3
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.6.1
+is_signature_from_type_hint: false
+mlflow_version: 2.22.0
+model_size_bytes: 36660679
+model_uuid: a641caa666e94263b7d81cad7d6b4388
+prompts: null
+run_id: 737fa5d3cc524a2794363acd29329ea3
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "Carat Weight", "required": true}, {"type":
+    "long", "name": "Cut", "required": true}, {"type": "long", "name": "Color", "required":
+    true}, {"type": "long", "name": "Clarity", "required": true}, {"type": "long",
+    "name": "Polish", "required": true}, {"type": "long", "name": "Symmetry", "required":
+    true}, {"type": "long", "name": "Report", "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float64", "shape": [-1]}}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2025-05-19 10:55:50.578813'

@@ -1,0 +1,10 @@
+stages:
+  train:
+    cmd: python src/training/train.py
+    deps:
+      - src/training/train.py
+      - data/raw/diamond.csv
+    outs:
+      - models/production/diamond_price_model.pkl
+    metrics:
+      - metrics/performance.json

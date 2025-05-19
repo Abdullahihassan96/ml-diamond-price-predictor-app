@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Abdullahi/Desktop/MLProject/mlruns/0/bde0a30fa62e45a5ac07a4a7981143b2/artifacts
+end_time: 1747651923026
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: bde0a30fa62e45a5ac07a4a7981143b2
+run_name: bald-owl-866
+run_uuid: bde0a30fa62e45a5ac07a4a7981143b2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1747651896883
+status: 3
+tags: []
+user_id: Abdullahi
