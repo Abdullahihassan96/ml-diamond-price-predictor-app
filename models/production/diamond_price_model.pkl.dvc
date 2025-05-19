@@ -1,0 +1,5 @@
+outs:
+- md5: 4d6fd7cf614196cfb64e0bfc4bcea7b5
+  size: 38929686
+  hash: md5
+  path: diamond_price_model.pkl
