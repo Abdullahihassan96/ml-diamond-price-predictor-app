@@ -6,6 +6,14 @@ import os
 from pathlib import Path
 from datetime import datetime
 import logging
+import sys
+from pathlib import Path
+
+# Add project root to Python path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+# Now use absolute import
+from src.monitoring.logging import log_prediction
 from src.monitoring.logging import log_prediction  # New import for MLOps
 
 # --- Configure Logging ---
